@@ -1,0 +1,31 @@
+***Commands***
+php bin/console make:controller // creates controller and in Symfony also view
+php bin/console server:start // starts local server
+
+***Debug***
+{{ dump() }}
+
+***Passing variables through the query parameter***
+Hello, {{ app.request.query.get('name') | default('dear friend') }}!
+
+***Routes***
+
+hello_page:
+    path: /hello
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: 'hello_page.html.twig'
+// Indents should be precisely as they are in this example
+
+***Controllers***
+**Passing variables**
+/**
+    * @Route("/hello-page", name="hello_page")
+    */
+public function hello(Request $request)
+{
+    $name = $request->query->get('name', 'Stranger'); // second parameter here is a default value
+    return $this->render('hello_page.html.twig', [
+        'name' => $name
+    ]);
+}
