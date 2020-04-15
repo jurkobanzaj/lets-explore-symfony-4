@@ -17,11 +17,10 @@ class WelcomeController extends AbstractController
     }
 
     /**
-     * @Route("/hello-page", name="hello_page")
+     * @Route("/hello-page/{name}", name="hello_page", defaults={"name" = "Banzaj"}, requirements={"name"="[A-Za-z]+"})
      */
-    public function hello(Request $request)
+    public function hello($name)
     {
-        $name = $request->query->get('name', 'Stranger');
         return $this->render('hello_page.html.twig', [
             'name' => $name
         ]);
