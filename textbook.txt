@@ -4,6 +4,7 @@ php bin/console server:start // starts local server
 
 ***Debug***
 {{ dump() }}
+tail -f var/log/dev.log  // to view logs
 
 ***Passing variables through the query parameter***
 Hello, {{ app.request.query.get('name') | default('dear friend') }}!
